@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文起名"
+  short_description: "结合音、形、义、谐音与文化出处生成并评估中文个人姓名候选"
+  default_prompt: "使用 $create-chinese-names 根据姓氏、字数和风格偏好生成一组中文姓名候选。"
