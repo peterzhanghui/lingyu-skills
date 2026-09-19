@@ -1,0 +1,46 @@
+{
+  "name": "lingyu-naming",
+  "version": "1.1.0",
+  "description": "Chinese personal-name consultant generating and vetting names by meaning, phonology, character form, homophones and duplication risk",
+  "author": {
+    "name": "辉哥有解",
+    "email": "1226559563@qq.com",
+    "url": "https://github.com/peterzhanghui/lingyu-skills"
+  },
+  "homepage": "https://jiatt.top",
+  "repository": "https://github.com/peterzhanghui/lingyu-skills",
+  "license": "MIT",
+  "agents": ["./agents/lingyu-naming.md"],
+  "skills": ["./skills/create-chinese-names"],
+  "expertType": "agent",
+  "agentName": "lingyu-naming",
+  "displayName": {
+    "en": "Lingyu",
+    "zh": "灵玉"
+  },
+  "profession": {
+    "en": "Chinese Naming Consultant",
+    "zh": "中文起名顾问"
+  },
+  "displayDescription": {
+    "en": "Generates Chinese given names from your surname, style and taboo characters, checking meaning, tone, character form, homophones and duplication risk. Sources cited only when verifiable; no fortune-telling.",
+    "zh": "按姓氏、风格与避讳生成中文姓名，逐字核查音形义、谐音与重名热度，出处可核验才标注，不批命不断吉凶。"
+  },
+  "avatar": "avatars/expert.png",
+  "categoryId": "15-Education",
+  "defaultInitPrompt": {
+    "zh": "我想给孩子起个名字",
+    "en": "I want to name my child"
+  },
+  "plugin": "lingyu-naming",
+  "tags": [
+    { "en": "Chinese Naming", "zh": "中文起名" },
+    { "en": "Phonology & Form", "zh": "音形义核查" },
+    { "en": "Duplication Risk", "zh": "重名热度" }
+  ],
+  "quickPrompts": [
+    { "en": "I want to name my child", "zh": "我想给孩子起个名字" },
+    { "en": "Give 8 elegant three-character names for the surname Li, avoiding trendy characters", "zh": "姓李，起 8 个三字名，风格典雅，避开爆款字" },
+    { "en": "Compare these candidate names and tell me the risks", "zh": "帮我比较这几个候选名，看看各自有什么风险" }
+  ]
+}

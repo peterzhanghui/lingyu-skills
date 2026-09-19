@@ -1,28 +1,50 @@
 # lingyu-skills
 
-这里集中维护与「灵玉」相关的可复用 AI Skills。仓库采用单仓多 Skill 结构，每个 Skill 都是 `skills/` 下可以独立安装和使用的目录。
+> 中文起名的可复用 AI Skill 与 Agent 专家包。把姓名当作语言与文化选择来处理，逐字核查音、形、义、谐音与重名热度；出处可核验才标注，不批命、不断吉凶。
 
-## Skills
+由「**辉哥有解**」维护。这套规则背后是已上线在跑的 AI 起名产品 [**灵玉起名 · jiatt.top**](https://jiatt.top)——仓库里公开的是完整的起名方法论，不是精简版。
 
-| Skill | 说明 |
-| --- | --- |
-| [`create-chinese-names`](skills/create-chinese-names/) | 根据姓氏、字数、风格和避讳条件生成、比较并解释中文个人姓名 |
+## 产物
+
+同一份规则，两种分发形态：
+
+| 产物 | 面向 | 安装 |
+| --- | --- | --- |
+| [`skills/create-chinese-names`](skills/create-chinese-names/) | Claude Code、Codex、Cursor 等支持 Skills 的 Agent | `npx skills add`（见下） |
+| [`experts/lingyu-naming`](experts/lingyu-naming/) | 腾讯 WorkBuddy 专家「灵玉」 | 专家市场安装 |
+
+专家包不复制规则，打包时从 `skills/` 的真源取，改一次两边生效。
 
 ## 目录约定
 
 ```text
 lingyu-skills/
 ├── README.md
-└── skills/
-    └── create-chinese-names/
-        ├── SKILL.md
-        ├── agents/
-        │   └── openai.yaml
-        └── references/
-            └── naming-rules.md
+├── LICENSE
+├── skills/
+│   └── create-chinese-names/
+│       ├── SKILL.md                  # 核心工作流
+│       ├── agents/openai.yaml
+│       └── references/               # 领域规则
+│           ├── naming-rules.md       # 音、形、义与风险判定
+│           ├── popularity-data.md    # 爆款字与重名风险
+│           ├── examples.md           # 分析示范
+│           └── output-example.md     # 方案输出格式
+└── experts/
+    └── lingyu-naming/
+        ├── .codebuddy-plugin/plugin.json
+        ├── agents/lingyu-naming.md   # 身份、开场、自检、边界
+        ├── avatars/expert.png
+        └── build.sh                  # 打包提审用 zip
 ```
 
 每个 Skill 的核心工作流放在 `SKILL.md`，详细领域规则按需放在 `references/`，确定性工具才放在 `scripts/`。不要在 Skill 内复制线上服务的密钥、私有词库或客户数据。
+
+## 能做什么 / 不做什么
+
+**能做**：按姓氏、字数、风格、辈分与避讳生成候选；逐字分析字义、普通话声调与连读、字形书写、常见谐音；比较已有候选并指出各自风险；判断爆款字与模板化重名风险。
+
+**不做**：预测性格、健康、财富、婚姻或命运；以八字、生肖、五行下确定性结论或作吉凶保证；替代商标检索与户籍登记核验。用户主动提供生辰时，五行只作**选字参考**，不批命、不强制配字。
 
 ## 安装
 
@@ -164,6 +186,18 @@ npx -y skills add peterzhanghui/lingyu-skills -g --all
 
 如果之前是软链接到本地仓库，进入克隆目录执行 `git pull` 即可。
 
+## WorkBuddy 专家「灵玉」
+
+在 WorkBuddy 专家市场搜索「灵玉」安装即可，无需本仓库。
+
+自行打包提审：
+
+```bash
+bash experts/lingyu-naming/build.sh
+```
+
+产物在 `experts/lingyu-naming/dist/`，zip 内为专家目录内容（不含外层文件夹）。详见 [experts/lingyu-naming/README.md](experts/lingyu-naming/README.md)。
+
 ## 许可证
 
-许可证将在首次公开发布前确定。
+[MIT](LICENSE)。可自由使用、修改、再分发与商用，保留版权与许可声明即可。
